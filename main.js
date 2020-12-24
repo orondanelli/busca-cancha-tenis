@@ -7,7 +7,8 @@ var args = minimist(process.argv.slice(2), {
     string: 'date',
     string: 'target'
   })
-
+  console.log(args)
+if (args.date != 'undefined' || args.target != 'undefined'){
 let search = args.target
 let day = args.date
 
@@ -47,3 +48,4 @@ axios.get('https://www.easycancha.com/api/sports/1/clubs/3/timeslots?date='+ day
   .catch(error => {
     console.log(error);
   });
+}
