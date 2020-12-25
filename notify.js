@@ -23,7 +23,7 @@ if (Object.keys(args).length > 1) {
         console.log('hay cancha')
         client.messages.create({
           from: '+14793484019',
-          body: 'Hay cancha para el ' + day + ' a las ' + search + ' hrs!',
+          body: 'Hay cancha para el ' + day + ' a las ' + search + ' hrs! www.easycancha.cl',
           to: '+56993109650'
         }).then(message => console.log(message.sid));
         client.messages.create({
