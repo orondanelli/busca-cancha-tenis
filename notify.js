@@ -26,12 +26,12 @@ if (Object.keys(args).length > 1) {
     console.log(data)
     if (data === null) {
       //** If doesn't exist key, then create a new key and query for availability */
-      clientRedis.set(keyUser, "0", async function (err, data) {
+      clientRedis.set(keyUser, "0", function (err, data) {
         console.log('Redis: Created a new key for ' + keyUser)
         if (tools.validaMassu(day, search)) {
           let msg = 'Hay cancha para el ' + day + ' a las ' + search + ' hrs! www.easycancha.cl'
-          await tools.sendSMS('+56993109650', msg)
-          await tools.sendSMS('+56966206070',msg)
+          tools.sendSMS('+56993109650', msg)
+          tools.sendSMS('+56966206070',msg)
           clientRedis.incr(keyUser) // ++ for notification counter
           console.log('Hay cancha: Mensajes enviados')
         } else {
