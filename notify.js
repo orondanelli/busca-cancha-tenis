@@ -43,20 +43,16 @@ if (Object.keys(args).length > 1) {
     else {
       /** If exists key, then query for availability */
       if (data >= maxNotify) {
-        console.log('aca')
-        clientRedis.del(keyUser)
+        //clientRedis.del(keyUser)
         console.log(keyUser + ' deleted from Redis')
       } else {
-        console.log('aca 2' + maxNotify)
         if (await tools.validaMassu(day, search)) {
-          console.log('aca 3')
           let msg = 'Hay cancha para el ' + day + ' a las ' + search + ' hrs! www.easycancha.cl'
           await tools.sendSMS('+56993109650', msg)
           await tools.sendSMS('+56966206070',msg)
           clientRedis.incr(keyUser)
           console.log('Hay cancha: Mensajes enviados')
         } else {
-          console.log('aca 4')
           /** Increment key for check max notifications.*/
           clientRedis.incr(keyUser)
 
