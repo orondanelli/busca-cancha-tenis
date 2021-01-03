@@ -54,8 +54,6 @@ if (Object.keys(args).length > 1) {
           console.log('Hay cancha: Mensajes enviados')
         } else {
           /** Increment key for check max notifications.*/
-          clientRedis.incr(keyUser)
-
           console.log('No hay cancha')
 
         }
