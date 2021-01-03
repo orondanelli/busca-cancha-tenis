@@ -3,20 +3,20 @@ const environment = require('dotenv').config()
 const axios = require('axios')
 const client = require('twilio')()
 
-exports.validaMassu = (day, search) => {
-        axios.get('https://www.easycancha.com/api/sports/1/clubs/3/timeslots?date=' + day + '&timespan=60')
-        .then(response => {
-            let list = response.data.alternative_timeslots
-            let ok = 0
-            Object.keys(list).forEach(e => {
-                list[e].hour == search ? ok++ : 0
-            })
-            if (ok > 0) {
-                return true
-            } else {
-                return false
-            }
+exports.validaMassu = async (day, search) => {
+    let counter = 0
+    await axios.get('https://www.easycancha.com/api/sports/1/clubs/3/timeslots?date=' + day + '&timespan=60')
+    .then(response => {
+        let list = response.data.alternative_timeslots
+        Object.keys(list).forEach(e => {
+            list[e].hour == search ? counter++ : 0
         })
+    })
+    if (counter > 0) {
+        return true
+    } else {
+        return false
+    }
   }
 
 exports.sendSMS = (to, body) => {
